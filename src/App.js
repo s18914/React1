@@ -1,5 +1,6 @@
 import Header from './components/Header'
 import Tasks from './components/Tasks'
+import AddTask from './components/AddTask'
 import React from 'react'
 import { useState } from 'react'
 
@@ -35,13 +36,32 @@ const App = () => {
 
   // Delete Task
   const deleteTask = (id) => {
-    console.log('delete', id)
+    setTasks(tasks.filter((task) => task.id !== id))
+  }
+
+  //Add task
+  const addTask = async (task) => {
+
+    const id = Math.floor(Math.random() * 10000) + 1
+    const newTask = { id, ...task }
+    setTasks([...tasks, newTask])
+  }
+
+  //toggle reminder
+  const toggleReminder = (id) => {
+    setTasks(tasks.map((task) => 
+    task.id === id ? 
+    { ...task, reminder: !task.reminder } : task)
+    )
   }
 
   return (
     <div className='App'>
       <Header />
-      <Tasks tasks={tasks} onDelete={deleteTask} />
+      <AddTask onAdd={addTask} />
+      {tasks.length > 0 ? (
+      <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
+       ) : ('All tasks are done!') }
     </div>
   )
 }

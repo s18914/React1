@@ -3,13 +3,13 @@ import Button from './Button'
 
 const Header = () => {
   const onClick = () => {
-    console.log(':)')
+    console.log('+')
   }
 
   return (
     <header className='App-header'>
       <h1>Hejka!</h1>
-      <Button color='blue' onClick={onClick}/>
+      <Button color='blue' text='+' onClick={onClick}/>
     </header>
   )
 }
