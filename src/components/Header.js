@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from './Button'
 
-const Header = () => {
+const Header = ({onAdd, showAdd}) => {
   const onClick = () => {
     console.log('+')
   }
@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <header className='App-header'>
       <h1>Hejka!</h1>
-      <Button color='blue' text='+' onClick={onClick}/>
+      <Button color={showAdd ? 'red' : 'blue'} text={showAdd ? '-' : '+'} onClick={onAdd}/>
     </header>
   )
 }
